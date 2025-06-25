@@ -8,18 +8,38 @@ def main():
     }
     
     while True:
-        player = str(input())
-        computer = random.choice(board)
+        player = str(input("Enter move like chess. ")).upper()
+        if player not in board:
+            print("invalid move")
+            continue
+        if board[player] != "_":
+            print("something has already been placed there")
+            continue
         board[player] = "x"
+        graphics(board)
+        
+        
+        winner = check_winner(board)
+        if winner:
+            print(f"{winner} wins!")
+        if "_" not in board.values():
+            graphics(board)
+            print("tie")
+
+        empty_space = [key for key in board if board[key] == "_"]
+        computer = random.choice(empty_space)
         board[computer] = "o"
+        print(f"computer chose {computer}") 
         graphics(board)
         winner = check_winner(board)
         if winner:
             print(f"{winner} wins!")
-        else:
-            print("no winner")
+        if "_" not in board.values():
+            graphics(board)
+            print("tie")
         
- 
+
+
 def graphics(board):
     print("   1  2  3")
     print(f" A |{board['A1']}|{board['A2']}|{board['A3']}|")
