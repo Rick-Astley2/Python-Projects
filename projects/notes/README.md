@@ -1,7 +1,7 @@
 # Notes
 
 Project:
-A basic command-line notepad that allows users to save and read notes from a CSV file.
+A command-line notepad that allows users to save and read notes from a CSV file.
 
 Features:
     - Append new notes to a `.csv` file
