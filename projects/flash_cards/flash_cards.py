@@ -6,7 +6,7 @@ def main():
 
 
 def read_flash_cards():
-    with open("cards.csv", "r") as cards:
+    with open("card.csv", "r") as cards:
         
         reader = DictReader(cards)
         for row in reader:

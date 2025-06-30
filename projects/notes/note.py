@@ -1,28 +1,41 @@
 from csv import DictReader, DictWriter
+import os
+
+FILENAME = "note.csv"
 
 def main():
-    user_input = input("Type w or r: ").strip().lower()
+    user_input = input("Type 'w' to write a note or 'r' to read notes: ").strip().lower()
     if user_input == "w":
         add_note()
-    if user_input == "r":
+    elif user_input == "r":
         read_notes()
-
+    else:
+        print("Invalid input. Please type 'w' or 'r'.")
 
 def read_notes():
-    with open("note.csv", "r") as notepad:
+    if not os.path.exists(FILENAME):
+        print("No notes found.")
+        return
+
+    with open(FILENAME, "r", newline='') as notepad:
         reader = DictReader(notepad)
+        print("\n--- Notes ---")
         for row in reader:
-            for key, value in row.items():
-                print(f"{key}: {value}")
+            print(f"- {row['note']}")
+
+def add_note():
+    user_note = input("Enter a note: ")
     
-        
-def add_note():    
-    with open("note.csv", "a") as notepad:
-        user_note = input("Enter a note: ")
-        writer = DictWriter(notepad, fieldnames=[user_note])
-        print("Note added.")
-        if notepad.tell() == 0:
+    file_exists = os.path.exists(FILENAME)
+    is_empty = not file_exists or os.path.getsize(FILENAME) == 0
+
+    with open(FILENAME, "a", newline='') as notepad:
+        writer = DictWriter(notepad, fieldnames=["note"])
+        if is_empty:
             writer.writeheader()
-        writer.writerow({user_note: user_note})
+        writer.writerow({"note": user_note})
+    
+    print("Note added.")
+
 if __name__ == "__main__":
     main()
