@@ -3,7 +3,7 @@ This repository showcases various Python projects I developed while studying and
 
 Projects:
 flash cards app, madlib, notes, 
-calculator, coffee maker, number quessing game,
+calculator, coffee maker, number quessing game, password_finder,
 slots older version, stop watch, and tic-tac-toe
 
 To run these projects you will need:
