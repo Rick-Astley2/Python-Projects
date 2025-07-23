@@ -250,10 +250,53 @@ def main():
 if __name__ == "__main__":
     main()
 """
+
+# quick sort
+# best case O(n log(n))
+# worst case O(n^2)
+# space complexity O(log(n))
+"""
 def main():
-    array = []
+    array = [8, 2, 5, 3, 9, 4, 7, 6, 1]
+
+    quick_sort(array, 0, len(array) - 1)
+
+    for i in array:
+        print(i, end=" ")
+
+def quick_sort(array, start, end):
+    if start >= end:
+        return
+
+    pivot_index = partition(array, start, end)
+    quick_sort(array, start, pivot_index - 1)
+    quick_sort(array, pivot_index + 1, end)
+
+def partition(array, start, end):
+    pivot = array[end]
+    i = start - 1
+
+    for j in range(start, end):
+        if array[j] < pivot:
+            i += 1
+            array[i], array[j] = array[j], array[i]
+
+    i += 1
+    array[i], array[end] = array[end], array[i]
+
+    return i
+
 if __name__ == "__main__":
     main()
+"""
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
+
+
 
 # put, appened, pop, poleft, get. 
 # dynamic array is just a list
